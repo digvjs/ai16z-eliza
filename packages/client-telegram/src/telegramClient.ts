@@ -36,7 +36,9 @@ export class TelegramClient {
     }
 
     private async initializeBot(): Promise<void> {
-        this.bot.launch({ dropPendingUpdates: true });
+        this.bot.launch({ dropPendingUpdates: true }).catch((err) => {
+            elizaLogger.error("Error launching bot:", err);
+        });
         elizaLogger.log(
             "✨ Telegram bot successfully launched and is running!"
         );
